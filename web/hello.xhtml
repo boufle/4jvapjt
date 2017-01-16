@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>pd</title>
+</h:head>
+
+<h:body >
+    <f:view>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputText value='Mail'/>
+                <h:inputText value='#{connexionManagedBean.mail}'/>
+                <h:outputText value='Mdp'/>
+                <h:inputText value='#{connexionManagedBean.mdp}'/>
+                <h:commandButton action="#{connexionManagedBean.connect}" value="Connect"/>
+            </h:panelGrid>
+        </h:form>
+    </f:view>
+</h:body>
+
+</html>
+
+

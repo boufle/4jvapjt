@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>4jva</title>
+</h:head>
+<f:metadata>
+    <f:event type="preRenderView" listener="#{coursesManagedBean.loadAllCourses}"/>
+</f:metadata>
+<h:body style="padding-top: 50px; padding-bottom: 20px;">
+    <b:navBar brand="SupE-Learn" brandHref="index.xhtml" inverse="true" fixed="top">
+        <b:navbarLinks>
+            <b:navLink rendered="#{connexionManagedBean.logged}" value="Vos Cours" outcome="voscours"></b:navLink>
+           <!-- <b:dropMenu value="Dropdown">
+                <b:navLink value="Action" href="#"></b:navLink>
+                <b:navLink value="Another action" href="#"></b:navLink>
+                <b:navLink value="Something else here" href="#"></b:navLink>
+                <b:navLink></b:navLink>
+                <b:navLink header="Nav header"></b:navLink>
+                <b:navLink value="Separated link" href="#"></b:navLink>
+                <b:navLink value="One more separated link" href="#"></b:navLink>
+            </b:dropMenu>-->
+        </b:navbarLinks>
+        <h:form rendered="#{not connexionManagedBean.logged}" styleClass="navbar-form navbar-right">
+            <div class="form-group">
+                <b:inputText placeholder="Email" value='#{connexionManagedBean.mail}' fieldSize="sm"/>
+                <!--input type="text" class="form-control" placeholder="Search"/-->
+            </div>
+            <div class="form-group">
+                <b:inputSecret placeholder="Password" value='#{connexionManagedBean.mdp}' fieldSize="sm"/>
+            </div>
+            #{' '}
+            <b:commandButton action="#{connexionManagedBean.connect}" value="Sign in" look="success" icon="chevron-right" iconAlign="right"/>
+        </h:form>
+        <h:form rendered="#{connexionManagedBean.logged}" styleClass="navbar-form navbar-right">
+            <div class="form-group">
+                <h:outputText style="color: white"  value="#{connexionManagedBean.mail}"/>
+                <!--input type="text" class="form-control" placeholder="Search"/-->
+            </div>
+            #{' '}
+            <b:commandButton action="#{connexionManagedBean.disconnect}" value="Disconnect" look="success" icon="chevron-right" iconAlign="right"/>
+        </h:form>
+    </b:navBar>
+    <b:jumbotron style="padding : 0">
+            <b:carousel id="parque" style="width:100%">
+                <b:carouselItem>
+                    <img src="https://images.discordapp.net/.eJwNy8ENgCAMAMBdGIAK1SpuQ7BBEwVC68u4u37ud4-5-2lWs6s2WQG2Q1LtmxWtPWa2udZ8cmyH2FQviKox7RcXFQg0hYHGX-9mP6AHT8vsR8QJyQVHAReQm_n_vdhWsnk_LuQjag.BtGAJws1Of58mmucnPZuN9nAsek" alt="Valladolid" />
+                </b:carouselItem>
+                <b:carouselItem>
+                    <img src="https://images.discordapp.net/.eJwNy8ENgCAMQNFdGIBiQVC3IUjQRCmh9WTcXS7_nf6rnn6pTR0ijTeA_eREfdcs1GPJuhCVK8d2sk50QxSJ6bhzFYbVz6vxbhSngMYioF8COmv90E7BGAR-Wh5_7brVor4fLtcjag.CF7vpbDIFImprRY4DrKbdwHd1R0" alt="Valladolid" />
+                </b:carouselItem>
+                <b:carouselItem>
+                    <img src="https://images.discordapp.net/.eJwNy8ENgCAMAMBdGIBKqSBuQ5CgiQKh9WXcXT_3u0fd41Sr2kU6rwDbwamNTbO0EUvWpbVy5tgP1qldEEVi2q9chSG4OUyOftF4nCwCusUjWTIUFmvIzwh89_z_UXWvRb0fLxQjbw.WSra63AvR19hreA78w8uaVBjG98" alt="Valladolid" />
+                </b:carouselItem>
+            </b:carousel>
+    </b:jumbotron>
+    <b:container>
+        <b:row style="margin-bottom:50px">
+            <b:column col-md="4">
+                <h2><h:outputText value="#{coursesManagedBean.courses[0].titre}"/></h2>
+                <p><h:outputText value="#{coursesManagedBean.courses[0].description}"/></p>
+<!--            <ui:repeat value="#{cart.items}" var="item">
+                    <h:commandButton value="#{item}" />
+                </ui:repeat>-->
+                <h:outputText style="font-weight: bold" value="Nombres d'heures : #{coursesManagedBean.courses[0].nbheure}h"/>
+                <p>
+                    <b:button rendered="#{connexionManagedBean.logged}" look="success" outcome="cours?faces-redirect=true" includeViewParams="true" value="Voir le cours">
+                        <f:param value="#{coursesManagedBean.courses[0].titre}" name="name"/>
+                    </b:button>
+                </p>
+            </b:column>
+            <b:column col-md="4">
+                <h2><h:outputText value="#{coursesManagedBean.courses[1].titre}"/></h2>
+                <p><h:outputText value="#{coursesManagedBean.courses[1].description}"/></p>
+                <!--            <ui:repeat value="#{cart.items}" var="item">
+                                    <h:commandButton value="#{item}" />
+                                </ui:repeat>-->
+                <h:outputText style="font-weight: bold" value="Nombres d'heures : #{coursesManagedBean.courses[1].nbheure}h"/>
+                <p><b:button rendered="#{connexionManagedBean.logged}" look="success" outcome="" value="Voir le cours"/></p>
+            </b:column>
+            <b:column col-md="4">
+                <h2><h:outputText value="#{coursesManagedBean.courses[2].titre}"/></h2>
+                <p><h:outputText value="#{coursesManagedBean.courses[2].description}"/></p>
+                <!--            <ui:repeat value="#{cart.items}" var="item">
+                                    <h:commandButton value="#{item}" />
+                                </ui:repeat>-->
+                <h:outputText style="font-weight: bold" value="Nombres d'heures : #{coursesManagedBean.courses[2].nbheure}h"/>
+                <p><b:button rendered="#{connexionManagedBean.logged}" look="success" outcome="" value="Voir le cours"/></p>
+            </b:column>
+        </b:row>
+        <b:row>
+            <b:column col-md="4">
+                <h2><h:outputText value="#{coursesManagedBean.courses[0].titre}"/></h2>
+                <p><h:outputText value="#{coursesManagedBean.courses[0].description}"/></p>
+                <!--            <ui:repeat value="#{cart.items}" var="item">
+                                    <h:commandButton value="#{item}" />
+                                </ui:repeat>-->
+                <h:outputText style="font-weight: bold" value="Nombres d'heures : #{coursesManagedBean.courses[0].nbheure}h"/>
+                <p><b:button rendered="#{connexionManagedBean.logged}" look="success" outcome="" value="Voir le cours"/></p>
+            </b:column>
+            <b:column col-md="4">
+                <h2><h:outputText value="#{coursesManagedBean.courses[1].titre}"/></h2>
+                <p><h:outputText value="#{coursesManagedBean.courses[1].description}"/></p>
+                <!--            <ui:repeat value="#{cart.items}" var="item">
+                                    <h:commandButton value="#{item}" />
+                                </ui:repeat>-->
+                <h:outputText style="font-weight: bold" value="Nombres d'heures : #{coursesManagedBean.courses[1].nbheure}h"/>
+                <p><b:button rendered="#{connexionManagedBean.logged}" look="success" outcome="" value="Voir le cours"/></p>
+            </b:column>
+            <b:column col-md="4">
+                <h2><h:outputText value="#{coursesManagedBean.courses[2].titre}"/></h2>
+                <p><h:outputText value="#{coursesManagedBean.courses[2].description}"/></p>
+                <!--            <ui:repeat value="#{cart.items}" var="item">
+                                    <h:commandButton value="#{item}" />
+                                </ui:repeat>-->
+                <h:outputText style="font-weight: bold" value="Nombres d'heures : #{coursesManagedBean.courses[2].nbheure}h"/>
+                <p><b:button rendered="#{connexionManagedBean.logged}" look="success" outcome="" value="Voir le cours"/></p>
+            </b:column>
+        </b:row>
+        <hr/>
+        <footer>
+            <p>© SupE-Learn 2017</p>
+        </footer>
+    </b:container>
+
+</h:body>
+</html>

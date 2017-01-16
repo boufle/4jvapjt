@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>#{singleCoursesManagedBean.name}</title>
+</h:head>
+<f:metadata>
+    <f:event type="preRenderView" listener="#{singleCoursesManagedBean.loadCourses}"/>
+</f:metadata>
+<h:body style="padding-top: 50px; padding-bottom: 20px;">
+    <b:navBar brand="SupE-Learn" brandHref="index.xhtml" inverse="true" fixed="top">
+        <b:navbarLinks>
+            <b:navLink rendered="#{connexionManagedBean.logged}" value="Vos Cours" outcome="voscours"></b:navLink>
+        </b:navbarLinks>
+        <h:form rendered="#{not connexionManagedBean.logged}" styleClass="navbar-form navbar-right">
+            <div class="form-group">
+                <b:inputText placeholder="Email" value='#{connexionManagedBean.mail}' fieldSize="sm"/>
+                <!--input type="text" class="form-control" placeholder="Search"/-->
+            </div>
+            <div class="form-group">
+                <b:inputSecret placeholder="Password" value='#{connexionManagedBean.mdp}' fieldSize="sm"/>
+            </div>
+            #{' '}
+            <b:commandButton action="#{connexionManagedBean.connect}" value="Sign in" look="success" icon="chevron-right" iconAlign="right"/>
+        </h:form>
+        <h:form rendered="#{connexionManagedBean.logged}" styleClass="navbar-form navbar-right">
+            <div class="form-group">
+                <h:outputText style="color: white"  value="#{connexionManagedBean.mail}"/>
+                <!--input type="text" class="form-control" placeholder="Search"/-->
+            </div>
+            #{' '}
+            <b:commandButton action="#{connexionManagedBean.disconnect}" value="Disconnect" look="success" icon="chevron-right" iconAlign="right"/>
+        </h:form>
+    </b:navBar>
+    <b:container>
+        <b:row style="margin-top:50px">
+            <b:column col-md="8">
+
+            </b:column>
+            <b:column style="border-left: 1px solid #000;" col-md="4">
+                <b:row style="margin-bottom:25px">
+                    <b:column col-md="12">
+                        <h:form>
+                            <b:commandButton action="test" value="Suivre ce cours" look="success" size="lg"/>
+                        </h:form>
+                    </b:column>
+                </b:row>
+                <b:row>
+                    <b:column col-md="12">
+                        <h:form>
+                            <b:commandButton style="padding-right: 31px;" action="test" value="Passer le test" look="info" size="lg"/>
+                        </h:form>
+                    </b:column>
+                </b:row>
+            </b:column>
+        </b:row>
+        <hr/>
+        <footer>
+            <p>© SupE-Learn 2017</p>
+        </footer>
+    </b:container>
+
+</h:body>
+</html>
